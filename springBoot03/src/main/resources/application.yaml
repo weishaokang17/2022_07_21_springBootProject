@@ -1,2 +1,10 @@
 server:
   port: 9000
+
+# springBoot底层目前有bug,配置了访问前缀后，首页index.html访问时，地址中index.html就不能省略
+spring:
+  mvc:
+    static-path-pattern: /res/**
+    hiddenmethod:
+      filter:
+        enabled: true   #开启页面表单的Rest功能
