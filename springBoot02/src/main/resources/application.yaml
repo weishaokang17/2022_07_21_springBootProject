@@ -1,0 +1,69 @@
+# yaml基本语法：
+#● key: value；kv之间有空格
+#● 大小写敏感
+#● 使用缩进表示层级关系
+#● 缩进不允许使用tab，只允许空格
+#● 缩进的空格数不重要，只要相同层级的元素左对齐即可
+#● '#'表示注释
+#● 字符串无需加引号，如果要加，''与""表示字符串内容 会被 转义/不转义
+
+
+person:
+  # 实体类中字段是userName，yaml文件中可以写成 userName，也可以写成user-name
+
+  #user-name: zhangsan
+  userName: lisi
+
+  #  单引号会将 \n作为字符串输出   双引号会将\n 作为换行输出
+  #  双引号不会转义，单引号会转义
+
+  # boolean类型
+  boss: true
+
+  # Date类型
+  birth: 2019/12/9
+
+  # Integer类型
+  age: 18
+
+  #  String的数组类型   interests: [篮球,足球]
+  interests:
+    - 篮球
+    - 足球
+    - 18
+
+  # list<String> 类型  下面两种写法都可以  上面的interests数组类型，也可以采取下面的list<String>类型的第一种写法
+
+  #animal: [阿猫,阿狗]
+  animal:
+    -阿猫
+    -阿狗
+
+  # score字段是 Map<String,Object>类型，下面两种写法都可以
+
+  #  score:
+  #    english: 80
+  #    math: 90
+  score: {english:80,math:90}
+
+  # salarys是 Set<Double>类型
+  salarys:
+    - 9999.98
+    - 9999.99
+
+  #pet字段是 项目中自定义的Pet类型
+  pet:
+    name: 阿狗
+    weight: 99.99
+
+  # allPets 是 Map<String, List<Pet>> 类型
+  allPets:
+    sick:
+      - {name: 阿狗,weight: 99.99}
+      - name: 阿猫
+        weight: 88.88
+      - name: 阿虫
+        weight: 77.77
+    health:
+      - {name: 阿花,weight: 199.99}
+      - {name: 阿明,weight: 199.99}
