@@ -5,8 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>per.wsk</groupId>
-    <artifactId>2022_07_21_springBootProject</artifactId>
+    <artifactId>springBoot01</artifactId>
     <version>1.0-SNAPSHOT</version>
+
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -60,6 +61,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>
