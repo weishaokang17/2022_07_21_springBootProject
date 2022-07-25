@@ -1,5 +1,7 @@
 server:
   port: 9000
+  servlet:
+    context-path: /world #项目的前置路径
 
 # springBoot底层目前有bug,配置了访问前缀后，首页index.html访问时，地址中index.html就不能省略
 spring:
@@ -8,3 +10,6 @@ spring:
     hiddenmethod:
       filter:
         enabled: true   #开启页面表单的Rest功能
+    contentnegotiation:
+      favor-parameter: true #开启请求参数内容协商模式
+

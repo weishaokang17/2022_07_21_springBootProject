@@ -2,9 +2,12 @@ package per.wsk.controller;
 
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
@@ -39,6 +42,13 @@ public class RequestController {
 
         table.put("code",code);
 
+        Object hello = request.getAttribute("hello");
+        Object world = request.getAttribute("world");
+        Object message = request.getAttribute("message");
+
+        table.put("hello",hello);
+        table.put("world",world);
+        table.put("message",message);
 
         return table;
     }
@@ -83,6 +93,24 @@ public class RequestController {
         map.put("bossAge",bossAge);
         map.put("empAge",empAge);
         return map;
+    }
+
+
+
+
+    @GetMapping("/params")
+    public String testParam(Map<String,Object> map,
+                            Model model,
+                            HttpServletRequest request,
+                            HttpServletResponse response){
+        map.put("hello","world666");
+        model.addAttribute("world","hello666");
+        request.setAttribute("message","HelloWorld");
+
+        Cookie cookie = new Cookie("c1","v1");
+        response.addCookie(cookie);
+        //请求转发到上面的 /success这个请求
+        return "forward:/success";
     }
 
 }
