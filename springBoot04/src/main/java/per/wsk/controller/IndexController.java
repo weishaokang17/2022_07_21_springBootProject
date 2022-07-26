@@ -45,4 +45,35 @@ public class IndexController {
 
 
 
+    /**
+     * 去main页面
+     * @return
+     */
+    @GetMapping("/main.html")
+    public String mainPage(HttpSession session,Model model){
+
+        log.info("当前方法是：{}","mainPage");
+        //是否登录。  拦截器，过滤器
+        Object loginUser = session.getAttribute("loginUser");
+        if(loginUser != null){
+            return "main";
+        }else {
+            //回到登录页面
+            model.addAttribute("msg","请重新登录");
+            return "login";
+        }
+        /*ValueOperations<String, String> opsForValue =
+                redisTemplate.opsForValue();
+
+        String s = opsForValue.get("/main.html");
+        String s1 = opsForValue.get("/sql");
+
+
+        model.addAttribute("mainCount",s);
+        model.addAttribute("sqlCount",s1);
+
+        return "main";*/
+
+    }
+
 }
