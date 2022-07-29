@@ -5,3 +5,86 @@ spring:
     static-path-pattern: /static/**/**    #指定静态资源引用路径
   thymeleaf:
     cache: false
+
+# redis相关配置
+  redis:
+    host: wskmyredis.redis.rds.aliyuncs.com
+    port: 6379
+    password: wsk:Wsk124779
+    client-type: jedis
+    jedis:
+      pool:
+        max-active: 10
+    #    url: redis://lfy:Lfy123456@r-bp1nc7reqesxisgxpipd.redis.rds.aliyuncs.com:6379
+    #    lettuce:
+    #      pool:
+    #        max-active: 10
+    #        min-idle: 5
+
+
+
+# 数据库配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/mysql?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    username: root
+    password: wskzxw
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #    type: com.zaxxer.hikari.HikariDataSource
+    jdbc:
+      template:
+        query-timeout: 3 #范围数据库时长最多3秒，3秒后仍未有结果就结束
+
+    druid:
+      aop-patterns: per.wsk.*  #springbean监控
+      filters: stat,wall,slf4j  #所有开启的功能
+
+      stat-view-servlet: #监控页配置
+        enabled: true
+        login-username: root
+        login-password: wskzxw
+        resetEnable: false
+
+      web-stat-filter: #web监控
+        enabled: true
+        urlPattern: /*
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+
+
+      filter:
+        stat: #sql监控
+          slow-sql-millis: 1000
+          logSlowSql: true
+          enabled: true
+        wall: #防火墙
+          enabled: true
+          config:
+            drop-table-allow: false
+
+# 配置mybatis规则、使用MyBatisPlus则此项配置无效
+mybatis:
+#  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mapper/*.xml
+  configuration:  # 指定mybatis全局配置文件中的相关配置项
+    map-underscore-to-camel-case: true
+
+#监控平台
+#management:
+    #  endpoints:
+    #   enabled-by-default: true #暴露所有端点信息
+      #   web:
+      #    exposure:
+    #     include: '*'  #以web方式暴露
+  #
+    #endpoint: #对某个端点的具体配置
+      #  health:
+      #   show-details: always
+    #   enabled: true
+
+      # info:
+    # enabled: true
+
+      #beans:
+    #  enabled: true
+
+      #metrics:
+    # enabled: true
